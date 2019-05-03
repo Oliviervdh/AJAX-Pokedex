@@ -1,0 +1,71 @@
+#wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-items: stretch;
+    align-items: stretch;: grid;
+    height: 500px;
+    width: 1200px;
+    border-radius: 10px
+}
+
+#left-dex {
+    border-style: solid;
+    border-color: black;
+    background-color: red;
+    text-align: center;
+    margin: 20px;
+    height: 100%;
+    border-radius: 10px
+
+}
+
+#poke-img{
+    border-radius: 10px;
+    background-color: white;
+    width: 350px;
+    height: 250px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+#poke-logo{
+
+    margin-top: 90px;
+  }
+
+#right-dex {
+    background-color: red;
+    border-style: solid;
+    border-color: black;
+    text-align: center;
+    margin: 20px;
+    height: 100%;
+    border-radius: 10px
+
+}
+
+#search {
+    display: block;
+    margin: auto;
+    margin-top: 40px;
+    height: 50px;
+    text-align: center;
+}
+
+#poke-info{
+    height: 150px;
+    width: 350px;
+    border-radius: 10px;
+    background-color: white;
+    margin: auto;
+    margin-top: 40px;
+
+}
+
+#poke-logoo{
+    margin-top: 80px;
+    margin-left: 180px;
+
+}
