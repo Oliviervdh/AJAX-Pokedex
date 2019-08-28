@@ -1,13 +1,34 @@
+body {
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: auto;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
 #wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
-    justify-items: stretch;
-    align-items: stretch;: grid;
-    height: 500px;
-    width: 1200px;
-    border-radius: 10px
+    display: flex;
+    border-radius: 10px;
+    height: 528px;
+}
+
+@media only screen and (max-width: 855px) {
+    body {
+        background-repeat: repeat-y;
+    }
+    #wrapper {
+        flex-direction: column;
+    }
+    #left-dex {
+        margin-bottom: 5px;
+    }
 }
 
 #left-dex {
@@ -15,14 +36,17 @@
     border-color: black;
     background-color: red;
     text-align: center;
-    margin: 20px;
+    margin-right: 5px;
     height: 100%;
+    width: 406px;
     border-radius: 10px
 
 }
 
 #poke-img{
     border-radius: 10px;
+    border-color: black;
+    border-style: solid;
     background-color: white;
     width: 350px;
     height: 250px;
@@ -40,8 +64,8 @@
     border-style: solid;
     border-color: black;
     text-align: center;
-    margin: 20px;
     height: 100%;
+    width: 406px;
     border-radius: 10px
 
 }
@@ -52,20 +76,23 @@
     margin-top: 40px;
     height: 50px;
     text-align: center;
+    border-radius: 10px;
+    border-style: none;
 }
 
 #poke-info{
     height: 150px;
     width: 350px;
     border-radius: 10px;
+    border-color: black;
+    border-style: solid;
     background-color: white;
     margin: auto;
     margin-top: 40px;
-
 }
 
 #poke-logoo{
     margin-top: 80px;
     margin-left: 180px;
-
 }
+
