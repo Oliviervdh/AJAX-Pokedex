@@ -3,7 +3,7 @@
 ## description
 
 This exercise was part of my study plan, it was created to learn how to fetch Json data and display it onto a web page. 
-The result can be seen at: https://oliviervdh.github.io/Responsive-Web-Design/
+The result can be seen at: https://oliviervdh.github.io/AJAX-Pokedex/
 
 ## technologies
 
