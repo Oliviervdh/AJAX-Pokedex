@@ -80,6 +80,10 @@ body {
     border-style: none;
 }
 
+#search:hover {
+    box-shadow: 0 2px 4px 4px rgba(209, 209, 209, 1);, 0 5px 1px 1px 1px rgba(209, 209, 209, 1);
+}
+
 #poke-info{
     height: 150px;
     width: 350px;
