@@ -36,13 +36,16 @@ function filterData(){
             const pokeImg = pokeUrl.sprites.front_shiny;
             console.log(pokeImg);
 
-            const pokeMoves = pokeUrl.weight;
-            console.log(pokeMoves);
+            const pokeWeight = pokeUrl.weight;
+            console.log(pokeWeight);
 
+            const pokeMoves = pokeUrl.moves;
+
+            pokeMoves.map((moves) => {
+                const pokeMove = moves.move.name;
+                console.log(pokeMove);
+            });
         });
-
-
-
 
         document.getElementById("search").value = " ";
     }
