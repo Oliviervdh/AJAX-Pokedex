@@ -14,13 +14,27 @@
 <div class="main">
     <div id="wrapper">
         <div id="left-dex">
-            <div id="poke-img"></div>
-            <div id="poke-logo"><img src="pok.png" alt="" width="300" height="100"></div>
+            <div id="left-wrapper">
+                <div id="poke-img"></div>
+            </div>
+            <div id="poke-logo-left"><img src="pok.png" alt="" width="300" height="100"></div>
         </div>
         <div id="right-dex">
-            <input type="text" id="search" onkeyup="filterData()" placeholder="Got to catch em all!">
-            <div id="poke-info" ></div>
-            <div id="poke-logoo"><img src="pokpok.png" alt="" width="220" height="144"></div>
+            <input type="text" id="search" placeholder="Got to catch em all!">
+            <div id="right-wrapper">
+                <div id="poke-info" >
+                    <div id="left-info">
+                        <div id="left-info-top">Name: <span id="top-span"></span></div> <br>
+                        <div id="left-info-middle">Weight: <span id="middle-span"></span></div> <br>
+                        <div id="left-info-bottom">Evolution tree: <span id="bottom-span"></span></div> <br>
+                    </div>
+                    <div id="right-info">
+                        <div id="right-info-top">Moves: <span id="right-span"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="poke-logo-right"><img src="pokpok.png" alt="" width="220" height="144"></div>
         </div>
     </div>
 </div>

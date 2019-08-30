@@ -7,18 +7,20 @@ function fetchData (url) {
     return (JSON.parse(requests.response));
 }
 
+// Gets the full Poke Json data.
+const pokeData = fetchData("https://pokeapi.co/api/v2/generation/1/");
 
-function filterData(){
+const input = document.getElementById("search");
+input.addEventListener("keyup", filterData);
+
+function filterData(event){
 
     if(event.keyCode === 13) {
-
-        // Gets the full Poke Json data.
-        const pokeData = fetchData("https://pokeapi.co/api/v2/generation/1/");
 
         // Gets all the pokemon species from the data.
         const pokeSpecies = pokeData.pokemon_species;
 
-        const inputVal = document.getElementById("search").value;
+        const inputVal = event.target.value;
         const lowerCaseValue = inputVal.toLowerCase();
 
         const filteredArray = pokeSpecies.filter((arrValue) => {
@@ -28,48 +30,48 @@ function filterData(){
         // using a map function to iterate over the data in the filtered array and retrieving the name from it.
         filteredArray.map((pokemon)=>{
 
+            // Pokémon name.
             const pokeName = pokemon.name;
-            console.log(pokeName);
+            const displayPokeName = document.getElementById("top-span");
+            displayPokeName.innerHTML += " " + pokeName;
 
             const pokeUrl = fetchData(`https://pokeapi.co/api/v2/pokemon/${pokeName}`);
 
+            // Pokémon image.
             const pokeImg = pokeUrl.sprites.front_shiny;
-            console.log(pokeImg);
 
+            const displayPokeImg = document.getElementById("poke-img");
+            const img = document.createElement("IMG");
+            img.setAttribute("src", pokeImg);
+            img.setAttribute("width", "330");
+            img.setAttribute("height", "215");
+            displayPokeImg.innerHTML = "";
+            displayPokeImg.appendChild(img);
+
+            // Pokémon weight.
             const pokeWeight = pokeUrl.weight;
-            console.log(pokeWeight);
+            const displayPokeWeight = document.getElementById("middle-span");
+            displayPokeImg.style.backgroundImage = "url('grass5.jpg')";
+            displayPokeWeight.innerHTML = " " + pokeWeight;
 
+            // Pokémon moves.
             const pokeMoves = pokeUrl.moves;
-
-            pokeMoves.map((moves) => {
-                const pokeMove = moves.move.name;
-                console.log(pokeMove);
+            function shuffle(array) {
+                array.sort(() => Math.random() - 0.5);
+            }
+            shuffle(pokeMoves);
+            const slicedMoves = pokeMoves.slice(0,4);
+            const displayPokeMoves = document.getElementById("right-span");
+            const changeDisplayColor = document.getElementById("poke-info");
+            slicedMoves.forEach((move)=>{
+                pokeMove = move.move.name;
+                changeDisplayColor.style.backgroundColor = "rgba(54, 243, 7, 1)";
+                displayPokeMoves.innerHTML += pokeMove + "<br>" ;
             });
         });
 
-        document.getElementById("search").value = " ";
+       event.target.value = "";
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// https://pokeapi.co/api/v2/pokemon/{id or name}
-
-//scanning the api according to the input. "use e.target to capture the input field data from the form and then scan/filter pokeData.pokemon_species and display the corresponding data into the associated div".
-// input.addEventListener("keyup");
-
-
-
 
 

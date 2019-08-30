@@ -1,8 +1,28 @@
+@font-face {
+    src: url("fonts/Pokemon Solid.ttf");
+    font-family: pokeMonS;
+}
+
+@font-face {
+    src: url("fonts/Pokemon Hollow.ttf");
+    font-family: pokeMonH;
+}
+
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
 body {
     background-color: black;
     background-repeat: no-repeat;
     background-size: cover;
     overflow: auto;
+    font-family: pokeManS;
+    font-size: 14px;
 }
 
 .main {
@@ -39,25 +59,32 @@ body {
     margin-right: 5px;
     height: 100%;
     width: 406px;
-    border-radius: 10px
+    padding-top: 40px;
+    border-radius: 10px;
 
 }
 
+#left-wrapper{
+    height: 250px;
+    width: 350px;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    background-color: rgba(169, 170, 170, 1);
+    margin: auto;
+    padding-top: 10px;
+
+}
 #poke-img{
     border-radius: 10px;
     border-color: black;
     border-style: solid;
-    background-color: white;
-    width: 350px;
-    height: 250px;
+    background-color: rgba(39, 39, 39, 1);
+    background-size: cover;
+    width: 320px;
+    height: 205px;
     margin: auto;
-    margin-top: 40px;
 }
-
-#poke-logo{
-
-    margin-top: 90px;
-  }
 
 #right-dex {
     background-color: red;
@@ -74,29 +101,71 @@ body {
     display: block;
     margin: auto;
     margin-top: 40px;
+    margin-bottom: 21px;
     height: 50px;
     text-align: center;
     border-radius: 10px;
-    border-style: none;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+
 }
 
 #search:hover {
     box-shadow: 0 2px 4px 4px rgba(209, 209, 209, 1);, 0 5px 1px 1px 1px rgba(209, 209, 209, 1);
 }
 
-#poke-info{
-    height: 150px;
+#right-wrapper{
+    height: 180px;
     width: 350px;
     border-radius: 10px;
     border-color: black;
     border-style: solid;
-    background-color: white;
+    background-color: rgba(169, 170, 170, 1);
+    padding-top: 10px;
     margin: auto;
-    margin-top: 40px;
+}
+#poke-info{
+    font-family: pokeMonS;
+    display: flex;
+    height: 135px;
+    width: 320px;
+    padding: 15px;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    background-color: rgba(39, 39, 39, 1);
+    margin: auto;
+
 }
 
-#poke-logoo{
-    margin-top: 80px;
-    margin-left: 180px;
+#left-info, #right-info {
+    width: 50%;
+}
+
+
+
+#left-info-top, #left-info-middle, #left-info-bottom, #right-info-top, #right-info {
+    display: flex;
+    color: rgba(39, 39, 39, 1);
+}
+
+#right-span {
+    font-family: pokeMonS;
+    display: flex;
+    flex-direction: row;
+}
+
+#top-span, #middle-span, #bottom-span {
+    font-family: pokeMonS;
+}
+
+#poke-logo-left{
+    margin-top: 100px;
+}
+
+#poke-logo-right{
+    margin-top: 60px;
+    margin-left: 140px;
 }
 
