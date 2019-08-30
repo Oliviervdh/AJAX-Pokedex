@@ -48,6 +48,7 @@ function filterData(event){
             // Pokémon name.
             const pokeName = pokemon.name;
             const displayPokeName = document.getElementById("top-span");
+            displayPokeName.innerHTML = "";
             displayPokeName.innerHTML += " " + pokeName;
 
             const pokeUrl = fetchData(`https://pokeapi.co/api/v2/pokemon/${pokeName}`);
@@ -67,12 +68,13 @@ function filterData(event){
             const pokeWeight = pokeUrl.weight;
             const displayPokeWeight = document.getElementById("middle-span");
             displayPokeImg.style.backgroundImage = "url('grass5.jpg')";
+            displayPokeWeight.innerHTML = "";
             displayPokeWeight.innerHTML = " " + pokeWeight;
 
             // Pokémon evolution.
-            const pokeEvo = fetchData(`https://pokeapi.co/api/v2/pokemon-species/${pokeName}`);
-            const displayPokeEvo = document.getElementById("bottom-span");
-            displayPokeEvo.innerHTML = " " + pokeEvo.evolves_from_species.name;
+            // const pokeEvo = fetchData(`https://pokeapi.co/api/v2/pokemon-species/${pokeName}`);
+            // const displayPokeEvo = document.getElementById("bottom-span");
+            // displayPokeEvo.innerHTML = " " + pokeEvo.evolves_from_species.name;
 
             // Pokémon moves.
             const pokeMoves = pokeUrl.moves;
@@ -86,6 +88,7 @@ function filterData(event){
             slicedMoves.forEach((move)=>{
                 pokeMove = move.move.name;
                 changeDisplayColor.style.backgroundColor = "rgba(54, 243, 7, 1)";
+                displayPokeMoves.innerHTML += "";
                 displayPokeMoves.innerHTML += pokeMove + "<br>" ;
             });
         });
