@@ -58,8 +58,8 @@ function filterData(event){
             const displayPokeImg = document.getElementById("poke-img");
             const img = document.createElement("IMG");
             img.setAttribute("src", pokeImg);
-            img.setAttribute("width", "330");
-            img.setAttribute("height", "215");
+            img.setAttribute("width", "320");
+            img.setAttribute("height", "205");
             displayPokeImg.innerHTML = "";
             displayPokeImg.appendChild(img);
 
