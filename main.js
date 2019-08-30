@@ -1,10 +1,22 @@
-
 // Reusable function that GETs the data with MXL_req
 function fetchData (url) {
     const requests = new XMLHttpRequest();
     requests.open('GET', url, false);
     requests.send();
     return (JSON.parse(requests.response));
+}
+
+// function that changes the color of the blue light while fetching
+function changeLightColor() {
+    const blueLight = document.getElementById("blue-light");
+
+    setTimeout(function(){
+        blueLight.style.backgroundColor = "rgba(255, 179, 0, 1)";}, 10);
+
+    const clearLight = setInterval(function(){
+        blueLight.style.backgroundColor = "rgba(21, 245, 244, 1)";
+    clearInterval(clearLight)
+    }, 500);
 }
 
 // Gets the full Poke Json data.
@@ -16,6 +28,9 @@ input.addEventListener("keyup", filterData);
 function filterData(event){
 
     if(event.keyCode === 13) {
+
+
+        changeLightColor();
 
         // Gets all the pokemon species from the data.
         const pokeSpecies = pokeData.pokemon_species;
