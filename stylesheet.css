@@ -152,7 +152,6 @@ body {
 
 #right-span {
     font-family: pokeMonS;
-    display: flex;
     flex-direction: row;
 }
 

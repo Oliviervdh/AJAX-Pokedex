@@ -72,9 +72,16 @@ function filterData(event){
             displayPokeWeight.innerHTML = " " + pokeWeight;
 
             // Pokémon evolution.
-            // const pokeEvo = fetchData(`https://pokeapi.co/api/v2/pokemon-species/${pokeName}`);
-            // const displayPokeEvo = document.getElementById("bottom-span");
-            // displayPokeEvo.innerHTML = " " + pokeEvo.evolves_from_species.name;
+            const pokeEvo = fetchData(`https://pokeapi.co/api/v2/pokemon-species/${pokeName}`);
+
+            const pokeEvoName = pokeEvo.evolves_from_species;
+            const displayPokeEvoName = document.getElementById("bottom-span");
+
+            if(pokeEvoName.name !== null){
+                displayPokeEvoName.innerHTML = "";
+                displayPokeEvoName.innerHTML = pokeEvoName.name;
+            }else return;
+
 
             // Pokémon moves.
             const pokeMoves = pokeUrl.moves;
@@ -82,15 +89,25 @@ function filterData(event){
                 array.sort(() => Math.random() - 0.5);
             }
             shuffle(pokeMoves);
+
+
             const slicedMoves = pokeMoves.slice(0,4);
-            const displayPokeMoves = document.getElementById("right-span");
-            const changeDisplayColor = document.getElementById("poke-info");
+
             slicedMoves.forEach((move)=>{
                 pokeMove = move.move.name;
+                const changeDisplayColor = document.getElementById("poke-info");
                 changeDisplayColor.style.backgroundColor = "rgba(54, 243, 7, 1)";
-                displayPokeMoves.innerHTML += "";
-                displayPokeMoves.innerHTML += pokeMove + "<br>" ;
+
+                const displayPokeMoves = document.getElementById("right-span");
+
+                if(displayPokeMoves.innerHTML !== ""){
+                    displayPokeMoves.innerHTML += "";
+                    displayPokeMoves.innerHTML += pokeMove + "<br>";
+                }else{
+                    displayPokeMoves.innerHTML += pokeMove + "<br>";
+                }
             });
+
         });
 
        event.target.value = "";
