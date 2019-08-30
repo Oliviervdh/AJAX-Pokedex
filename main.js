@@ -69,6 +69,11 @@ function filterData(event){
             displayPokeImg.style.backgroundImage = "url('grass5.jpg')";
             displayPokeWeight.innerHTML = " " + pokeWeight;
 
+            // Pokémon evolution.
+            const pokeEvo = fetchData(`https://pokeapi.co/api/v2/pokemon-species/${pokeName}`);
+            const displayPokeEvo = document.getElementById("bottom-span");
+            displayPokeEvo.innerHTML = " " + pokeEvo.evolves_from_species.name;
+
             // Pokémon moves.
             const pokeMoves = pokeUrl.moves;
             function shuffle(array) {
