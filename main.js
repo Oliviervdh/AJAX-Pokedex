@@ -42,8 +42,12 @@ function filterData(event){
             return arrValue.name === lowerCaseValue
         });
 
+        const changeDisplayColor = document.getElementById("poke-info");
+        changeDisplayColor.style.backgroundColor = "rgba(54, 243, 7, 1)";
+
         // using a map function to iterate over the data in the filtered array and retrieving the name from it.
         filteredArray.map((pokemon)=>{
+
 
             // Pokémon name.
             const pokeName = pokemon.name;
@@ -55,7 +59,6 @@ function filterData(event){
 
             // Pokémon image.
             const pokeImg = pokeUrl.sprites.front_shiny;
-
             const displayPokeImg = document.getElementById("poke-img");
             const img = document.createElement("IMG");
             img.setAttribute("src", pokeImg);
@@ -71,9 +74,28 @@ function filterData(event){
             displayPokeWeight.innerHTML = "";
             displayPokeWeight.innerHTML = " " + pokeWeight;
 
+            // Pokémon type.
+            const pokeTypes = pokeUrl.types;
+            pokeTypes.map((type)=>{
+                const pokeType = type.type.name;
+                const displayPokeType = document.getElementById("right-span-bottom");
+                displayPokeType.innerHTML = "";
+                displayPokeType.innerHTML = pokeType;
+            });
+
+            // Pokémon Game_index
+            const pokeIndex = pokeUrl.game_indices.slice(0,1);
+
+            pokeIndex.map((index)=>{
+               const pokeIndexNr = index.game_index;
+               const displayPokeIndexNr = document.getElementById("right-span-middle");
+                displayPokeIndexNr.innerHTML = "";
+                displayPokeIndexNr.innerHTML = pokeIndexNr;
+            });
+
+
             // Pokémon evolution.
             const pokeEvo = fetchData(`https://pokeapi.co/api/v2/pokemon-species/${pokeName}`);
-
             const pokeEvoName = pokeEvo.evolves_from_species;
             const displayPokeEvoName = document.getElementById("bottom-span");
 
@@ -90,22 +112,14 @@ function filterData(event){
             }
             shuffle(pokeMoves);
 
+            const slicedMoves = pokeMoves.slice(0,);
 
-            const slicedMoves = pokeMoves.slice(0,4);
-
-            slicedMoves.forEach((move)=>{
+            slicedMoves.map((move)=>{
                 pokeMove = move.move.name;
-                const changeDisplayColor = document.getElementById("poke-info");
-                changeDisplayColor.style.backgroundColor = "rgba(54, 243, 7, 1)";
+                const displayPokeMoves = document.getElementById("right-span-top");
+                displayPokeMoves.innerHTML = "";
+                displayPokeMoves.innerHTML = pokeMove;
 
-                const displayPokeMoves = document.getElementById("right-span");
-
-                if(displayPokeMoves.innerHTML !== ""){
-                    displayPokeMoves.innerHTML += "";
-                    displayPokeMoves.innerHTML += pokeMove + "<br>";
-                }else{
-                    displayPokeMoves.innerHTML += pokeMove + "<br>";
-                }
             });
 
         });

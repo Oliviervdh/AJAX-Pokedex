@@ -22,7 +22,7 @@ body {
     background-size: cover;
     overflow: auto;
     font-family: pokeManS;
-    font-size: 14px;
+    font-size: 13.2px;
 }
 
 .main {
@@ -130,7 +130,7 @@ body {
     display: flex;
     height: 135px;
     width: 320px;
-    padding: 15px;
+    padding: 15px 10px 15px 15px;
     border-radius: 10px;
     border-color: black;
     border-style: solid;
@@ -139,25 +139,46 @@ body {
 
 }
 
-#left-info, #right-info {
-    width: 50%;
-}
-
-
-
-#left-info-top, #left-info-middle, #left-info-bottom, #right-info-top, #right-info {
-    display: flex;
+#left-info {
     color: rgba(39, 39, 39, 1);
+    text-align: left;
+    width: 52%;
+    height: 100%;
+    position: relative;
 }
 
-#right-span {
-    font-family: pokeMonS;
-    flex-direction: row;
+#right-info {
+    color: rgba(39, 39, 39, 1);
+    text-align: left;
+    width: 48%;
+    height: 100%;
+    position: relative;
 }
 
-#top-span, #middle-span, #bottom-span {
-    font-family: pokeMonS;
+#right-info-top, #left-info-top {
+    position: absolute;
+    height: 33.33%;
+    width: 100%;
+    top: 0;
 }
+
+
+#right-info-middle, #left-info-middle {
+    position: absolute;
+    height: 33.33%;
+    width: 100%;
+    top: 34px;
+}
+
+#right-info-bottom, #left-info-bottom{
+    position: absolute;
+    height: 33.33%;
+    width: 100%;
+    bottom: 0;
+}
+
+
+
 
 #poke-logo-left{
     margin-top: 40px;
