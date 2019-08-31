@@ -6,48 +6,86 @@ function fetchData (url) {
     return (JSON.parse(requests.response));
 }
 
+// Gets the full Poke Json data.
+const pokeData = fetchData("https://pokeapi.co/api/v2/generation/1/");
+
 // function that changes the color of the blue light while fetching
 function changeLightColor() {
     const blueLight = document.getElementById("blue-light");
-
     setTimeout(function(){
         blueLight.style.backgroundColor = "rgba(255, 179, 0, 1)";}, 10);
-
     const clearLight = setInterval(function(){
         blueLight.style.backgroundColor = "rgba(21, 245, 244, 1)";
     clearInterval(clearLight)
     }, 500);
 }
 
-// Gets the full Poke Json data.
-const pokeData = fetchData("https://pokeapi.co/api/v2/generation/1/");
 
 const input = document.getElementById("search");
 input.addEventListener("keyup", filterData);
 
+// const pokeSpecies = pokeData.pokemon_species;
+//
+// function dataIncludesDropdown() {
+//     const inputValue = input.value;
+//     const lowerCaseValue = inputValue.toLowerCase();
+//     const filteredArray = pokeSpecies.filter((arrValue) => {
+//         return arrValue.name.includes(lowerCaseValue);
+//     });
+//
+//     filteredArray.map((pokemon)=>{
+//         const dropdownName = pokemon.name;
+//         const pokeUrl = fetchData(`https://pokeapi.co/api/v2/pokemon/${dropdownName}`);
+//         const pokeImg = pokeUrl.sprites.front_shiny;
+//
+//         listContainer = document.createElement('div');
+//         const dropdown = document.getElementById('dropdown').appendChild(listContainer);
+//         dropdown.style.height = "200px";
+//         dropdown.style.overflow = "auto";
+//
+//         for (i = 0; i < dropdownName.length; ++i) {
+//             listItem = document.createElement('span');
+//             listItem.setAttribute("color", "white");
+//
+//             listImg = document.createElement('IMG');
+//             listImg.setAttribute("src", pokeImg);
+//             listImg.setAttribute("width", "50");
+//             listImg.setAttribute("height", "50");
+//
+//             listItem.innerHTML = "";
+//             listItem.innerHTML += dropdownName + "<br>";
+//             listItem.appendChild(listImg);
+//             listContainer.appendChild(listItem);
+//         }
+//     });
+// }
+
+
 function filterData(event){
+
+    // Gets all the pokemon species from the data.
+    const pokeSpecies = pokeData.pokemon_species;
+
+    const inputVal = event.target.value;
+    const lowerCaseValue = inputVal.toLowerCase();
+
+    const filteredArray = pokeSpecies.filter((arrValue) => {
+        return arrValue.name === lowerCaseValue
+    });
 
     if(event.keyCode === 13) {
 
-
-        changeLightColor();
-
-        // Gets all the pokemon species from the data.
-        const pokeSpecies = pokeData.pokemon_species;
-
-        const inputVal = event.target.value;
-        const lowerCaseValue = inputVal.toLowerCase();
-
-        const filteredArray = pokeSpecies.filter((arrValue) => {
-            return arrValue.name === lowerCaseValue
-        });
-
+        // Changes the colors of the right display & fonts & light
         const changeDisplayColor = document.getElementById("poke-info");
         changeDisplayColor.style.backgroundColor = "rgba(54, 243, 7, 1)";
+        const changeFontColorLeft = document.getElementById("left-info");
+        changeFontColorLeft.style.color = "rgba(39, 39, 39, 1)";
+        const changeFontColorRight = document.getElementById("right-info");
+        changeFontColorRight.style.color = "rgba(39, 39, 39, 1)";
+        changeLightColor();
 
-        // using a map function to iterate over the data in the filtered array and retrieving the name from it.
+        // Using a map function to iterate over the data in the filtered array and retrieving the name from it.
         filteredArray.map((pokemon)=>{
-
 
             // Pokémon name.
             const pokeName = pokemon.name;
@@ -93,7 +131,6 @@ function filterData(event){
                 displayPokeIndexNr.innerHTML = pokeIndexNr;
             });
 
-
             // Pokémon evolution.
             const pokeEvo = fetchData(`https://pokeapi.co/api/v2/pokemon-species/${pokeName}`);
             const pokeEvoName = pokeEvo.evolves_from_species;
@@ -103,7 +140,6 @@ function filterData(event){
                 displayPokeEvoName.innerHTML = "";
                 displayPokeEvoName.innerHTML = pokeEvoName.name;
             }else return;
-
 
             // Pokémon moves.
             const pokeMoves = pokeUrl.moves;
@@ -121,9 +157,7 @@ function filterData(event){
                 displayPokeMoves.innerHTML = pokeMove;
 
             });
-
         });
-
        event.target.value = "";
     }
 }
