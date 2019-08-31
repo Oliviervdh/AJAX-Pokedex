@@ -27,38 +27,53 @@ input.addEventListener("keyup", filterData);
 // const pokeSpecies = pokeData.pokemon_species;
 //
 // function dataIncludesDropdown() {
+//
 //     const inputValue = input.value;
 //     const lowerCaseValue = inputValue.toLowerCase();
 //     const filteredArray = pokeSpecies.filter((arrValue) => {
 //         return arrValue.name.includes(lowerCaseValue);
 //     });
 //
+//     listContainer = document.createElement('div');
+//     listContainer.style.width = "100%";
+//     listContainer.style.display = "flex";
+//     listContainer.style.flexDirection = "column";
+//     listContainer.style.textAlign = "left";
+//
+//
 //     filteredArray.map((pokemon)=>{
 //         const dropdownName = pokemon.name;
 //         const pokeUrl = fetchData(`https://pokeapi.co/api/v2/pokemon/${dropdownName}`);
 //         const pokeImg = pokeUrl.sprites.front_shiny;
 //
-//         listContainer = document.createElement('div');
 //         const dropdown = document.getElementById('dropdown').appendChild(listContainer);
-//         dropdown.style.height = "200px";
+//         dropdown.style.height = "130px";
 //         dropdown.style.overflow = "auto";
 //
+//         listItem = document.createElement('span');
+//         listItem.setAttribute("color", "white");
+//         listItem.setAttribute( "text-align", "left");
+//         listItem.style.paddingTop = "10px";
+//         listItem.style.paddingLeft = "10px";
+//         listItem.style.margin = "auto";
+//         listItem.style.width = "100%";
+//         listItem.style.cursor = "pointer";
+//
+//         listImg = document.createElement('IMG');
+//         listImg.setAttribute("src", pokeImg);
+//         listImg.setAttribute("width", "50");
+//         listImg.setAttribute("height", "50");
+//         listImg.setAttribute("align", "right");
+//
 //         for (i = 0; i < dropdownName.length; ++i) {
-//             listItem = document.createElement('span');
-//             listItem.setAttribute("color", "white");
-//
-//             listImg = document.createElement('IMG');
-//             listImg.setAttribute("src", pokeImg);
-//             listImg.setAttribute("width", "50");
-//             listImg.setAttribute("height", "50");
-//
 //             listItem.innerHTML = "";
-//             listItem.innerHTML += dropdownName + "<br>";
+//             listItem.innerHTML += dropdownName ;
 //             listItem.appendChild(listImg);
 //             listContainer.appendChild(listItem);
 //         }
 //     });
 // }
+
 
 
 function filterData(event){
