@@ -121,11 +121,10 @@ body {
     margin-left: 35px;
     color: black;
     border-radius: 10px;
-    border-width: 2px;
-    background: white;
-    width: 185px;
-    top: 140px;
-    left: 74px;
+    background-color: rgba(169, 170, 170, 1);
+    width: 160px;
+    top: 300px;
+    left: -10px;
 }
 
 

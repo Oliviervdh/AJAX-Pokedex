@@ -20,61 +20,70 @@ function changeLightColor() {
     }, 500);
 }
 
-
 const input = document.getElementById("search");
+input.addEventListener("keyup", dataIncludesDropdown);
 input.addEventListener("keyup", filterData);
 
-// const pokeSpecies = pokeData.pokemon_species;
-//
-// function dataIncludesDropdown() {
-//
-//     const inputValue = input.value;
-//     const lowerCaseValue = inputValue.toLowerCase();
-//     const filteredArray = pokeSpecies.filter((arrValue) => {
-//         return arrValue.name.includes(lowerCaseValue);
-//     });
-//
-//     listContainer = document.createElement('div');
-//     listContainer.style.width = "100%";
-//     listContainer.style.display = "flex";
-//     listContainer.style.flexDirection = "column";
-//     listContainer.style.textAlign = "left";
-//
-//
-//     filteredArray.map((pokemon)=>{
-//         const dropdownName = pokemon.name;
-//         const pokeUrl = fetchData(`https://pokeapi.co/api/v2/pokemon/${dropdownName}`);
-//         const pokeImg = pokeUrl.sprites.front_shiny;
-//
-//         const dropdown = document.getElementById('dropdown').appendChild(listContainer);
-//         dropdown.style.height = "130px";
-//         dropdown.style.overflow = "auto";
-//
-//         listItem = document.createElement('span');
-//         listItem.setAttribute("color", "white");
-//         listItem.setAttribute( "text-align", "left");
-//         listItem.style.paddingTop = "10px";
-//         listItem.style.paddingLeft = "10px";
-//         listItem.style.margin = "auto";
-//         listItem.style.width = "100%";
-//         listItem.style.cursor = "pointer";
-//
-//         listImg = document.createElement('IMG');
-//         listImg.setAttribute("src", pokeImg);
-//         listImg.setAttribute("width", "50");
-//         listImg.setAttribute("height", "50");
-//         listImg.setAttribute("align", "right");
-//
-//         for (i = 0; i < dropdownName.length; ++i) {
-//             listItem.innerHTML = "";
-//             listItem.innerHTML += dropdownName ;
-//             listItem.appendChild(listImg);
-//             listContainer.appendChild(listItem);
-//         }
-//     });
-// }
+function dataIncludesDropdown() {
+    const pokeSpecies = pokeData.pokemon_species;
+    const inputValue = input.value;
+    const lowerCaseValue = inputValue.toLowerCase();
+    const filteredArray = pokeSpecies.filter((arrValue) => {
+        return arrValue.name.includes(lowerCaseValue);
+    });
 
+    listContainer = document.createElement('div');
+    listContainer.style.width = "100%";
+    listContainer.style.display = "flex";
+    listContainer.style.flexDirection = "column";
+    listContainer.style.textAlign = "left";
 
+    filteredArray.map((pokemon)=>{
+        const dropdownName = pokemon.name;
+        const pokeUrl = fetchData(`https://pokeapi.co/api/v2/pokemon/${dropdownName}`);
+        const pokeImg = pokeUrl.sprites.front_shiny;
+
+        document.getElementById('dropdown').innerHTML = "";
+
+        const dropdown = document.getElementById('dropdown').appendChild(listContainer);
+        dropdown.style.maxHeight = "130px";
+        dropdown.style.overflow = "auto";
+        dropdown.style.borderColor = "black";
+        dropdown.style.borderStyle = "solid";
+        dropdown.style.borderRadius = "10px";
+
+        listItem = document.createElement('span');
+        listItem.setAttribute("color", "white");
+        listItem.setAttribute( "text-align", "left");
+        listItem.classList.add("clickMe");
+        listItem.style.paddingTop = "10px";
+        listItem.style.paddingLeft = "10px";
+        listItem.style.margin = "auto";
+        listItem.style.width = "100%";
+        listItem.style.cursor = "pointer";
+
+        listItem.addEventListener("click", clicked);
+
+        function clicked(event){
+            console.log(event.target);
+           filterData()
+        }
+
+        listImg = document.createElement('IMG');
+        listImg.setAttribute("src", pokeImg);
+
+        listImg.setAttribute("width", "50");
+        listImg.setAttribute("height", "50");
+        listImg.setAttribute("align", "right");
+
+        for (i = 0; i < dropdownName.length; ++i) {
+            listItem.innerText = "";
+            listItem.innerHTML += dropdownName ;
+            listItem.appendChild(listImg);
+            listContainer.appendChild(listItem);
+        }
+    });
+}
 
 function filterData(event){
 
@@ -88,7 +97,7 @@ function filterData(event){
         return arrValue.name === lowerCaseValue
     });
 
-    if(event.keyCode === 13) {
+    if(event.keyCode === 13 || event.target.className === clickMe ) {
 
         // Changes the colors of the right display & fonts & light
         const changeDisplayColor = document.getElementById("poke-info");
@@ -111,7 +120,7 @@ function filterData(event){
             const pokeUrl = fetchData(`https://pokeapi.co/api/v2/pokemon/${pokeName}`);
 
             // Pokémon image.
-            const pokeImg = pokeUrl.sprites.front_shiny;
+            const pokeImg = pokeUrl.sprites.front_default
             const displayPokeImg = document.getElementById("poke-img");
             const img = document.createElement("IMG");
             img.setAttribute("src", pokeImg);
@@ -163,14 +172,14 @@ function filterData(event){
             }
             shuffle(pokeMoves);
 
-            const slicedMoves = pokeMoves.slice(0,);
+            const slicedMoves = pokeMoves.slice(0,1);
 
-            slicedMoves.map((move)=>{
-                pokeMove = move.move.name;
-                const displayPokeMoves = document.getElementById("right-span-top");
-                displayPokeMoves.innerHTML = "";
-                displayPokeMoves.innerHTML = pokeMove;
+            const displayPokeMoves = document.getElementById("right-span-top");
+            displayPokeMoves.innerHTML = "";
 
+            slicedMoves.forEach((move)=>{
+                const pokeMove = move.move.name;
+                displayPokeMoves.innerHTML += pokeMove + " ";
             });
         });
        event.target.value = "";
