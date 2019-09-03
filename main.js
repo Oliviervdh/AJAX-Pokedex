@@ -21,8 +21,50 @@ function changeLightColor() {
 }
 
 const input = document.getElementById("search");
-input.addEventListener("keyup", dataIncludesDropdown);
+// input.addEventListener("keyup", validateInput);
+// input.addEventListener("keyup", dataIncludesDropdown);
 input.addEventListener("keyup", filterData);
+
+
+// function validateInput(event){
+//     // Gets all the pokemon species from the data.
+//     const pokeSpecies = pokeData.pokemon_species;
+//
+//     const inputVal = event.target.value;
+//     const lowerCaseValue = inputVal.toLowerCase();
+//
+//     if(event.keyCode === 13){
+//
+//         const filteredArray = pokeSpecies.filter((arrValue) => {
+//             return arrValue.name === lowerCaseValue
+//         });
+//
+//         console.log(filteredArray);
+//
+//         filteredArray.forEach((pokemon)=> {
+//             // Pokémon name.
+//             const pokeName = pokemon.name;
+//             console.log(pokeName, lowerCaseValue);
+//
+//
+//
+//
+//             if( lowerCaseValue !== pokeName){
+//                 alert("Please specify your search by clicking one of the suggestions or entering the full Pokémon name");
+//             }else{
+//                 alert("run Filterdata")
+//                 // filterData(event);
+//             }
+//
+//         });
+//
+//
+//
+//
+//     }
+// }
+
+
 
 function dataIncludesDropdown() {
     const pokeSpecies = pokeData.pokemon_species;
@@ -62,12 +104,17 @@ function dataIncludesDropdown() {
         listItem.style.width = "100%";
         listItem.style.cursor = "pointer";
 
-        listItem.addEventListener("click", clicked);
+        // listItem.addEventListener("click", clicked);
 
-        function clicked(event){
-            console.log(event.target);
-           filterData()
-        }
+        // function clicked(e){
+        //
+        //     // console.log(e.target);
+        //     // e.target.classList.add("clickMe");
+        //     // listItem.classList.add("clickMe");
+        //
+        //
+        //    filterData()
+        // }
 
         listImg = document.createElement('IMG');
         listImg.setAttribute("src", pokeImg);
@@ -87,6 +134,8 @@ function dataIncludesDropdown() {
 
 function filterData(event){
 
+    console.log("clicked");
+
     // Gets all the pokemon species from the data.
     const pokeSpecies = pokeData.pokemon_species;
 
@@ -97,7 +146,9 @@ function filterData(event){
         return arrValue.name === lowerCaseValue
     });
 
-    if(event.keyCode === 13 || event.target.className === clickMe ) {
+    if(event.keyCode === 13 ) {
+
+
 
         // Changes the colors of the right display & fonts & light
         const changeDisplayColor = document.getElementById("poke-info");
@@ -113,6 +164,10 @@ function filterData(event){
 
             // Pokémon name.
             const pokeName = pokemon.name;
+
+
+            console.log(pokeName);
+
             const displayPokeName = document.getElementById("top-span");
             displayPokeName.innerHTML = "";
             displayPokeName.innerHTML += " " + pokeName;
@@ -152,7 +207,7 @@ function filterData(event){
                const pokeIndexNr = index.game_index;
                const displayPokeIndexNr = document.getElementById("right-span-middle");
                 displayPokeIndexNr.innerHTML = "";
-                displayPokeIndexNr.innerHTML = pokeIndexNr;
+                displayPokeIndexNr.innerHTML = " " + pokeIndexNr;
             });
 
             // Pokémon evolution.
@@ -160,10 +215,13 @@ function filterData(event){
             const pokeEvoName = pokeEvo.evolves_from_species;
             const displayPokeEvoName = document.getElementById("bottom-span");
 
-            if(pokeEvoName.name !== null){
+            if(pokeEvoName){
                 displayPokeEvoName.innerHTML = "";
                 displayPokeEvoName.innerHTML = pokeEvoName.name;
-            }else return;
+            }else {
+                displayPokeEvoName.innerHTML = "";
+                displayPokeEvoName.innerHTML = "No evo"
+            }
 
             // Pokémon moves.
             const pokeMoves = pokeUrl.moves;
