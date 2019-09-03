@@ -34,9 +34,8 @@ const pokeData = fetchData("https://pokeapi.co/api/v2/generation/1/");
 // Gets all the pokemon species from the data.
 const pokeSpecies = pokeData.pokemon_species;
 
+
 function validateInput(event){
-    // Gets all the pokemon species from the data.
-    const pokeSpecies = pokeData.pokemon_species;
 
     const inputVal = event.target.value;
     const lowerCaseValue = inputVal.toLowerCase();
@@ -59,9 +58,8 @@ function validateInput(event){
     }
 }
 
-function dropdown() {
-    const pokeSpecies = pokeData.pokemon_species;
-    const inputValue = input.value;
+function dropdown(event) {
+    const inputValue = event.target.value;
     const lowerCaseValue = inputValue.toLowerCase();
     const filteredArray = pokeSpecies.filter((arrValue) => {
         return arrValue.name.includes(lowerCaseValue);
@@ -104,7 +102,7 @@ function dropdown() {
 
 function filterData(event){
 
-    // const clickedPoke = event.target.innerText;
+    const clickedPoke = event.target.innerText;
     const inputVal = event.target.value;
     const lowerCaseValue = inputVal.toLowerCase();
 
