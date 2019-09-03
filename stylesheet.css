@@ -86,6 +86,12 @@ body {
     margin: auto;
 }
 
+.img {
+    width: 320px;
+    height: 205px;
+}
+
+
 #right-dex {
     position: relative;
     background-color: red;
@@ -126,6 +132,39 @@ body {
     width: 160px;
     top: 300px;
     left: -10px;
+}
+
+.dropdownOut {
+    max-height: 130px;
+    overflow: auto;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.listContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.listItem {
+    font-family: pokeMonS;
+    color: rgba(53, 98, 173, 1);
+    line-height: 50px;
+    text-align: left;
+    padding-top: 5px;
+    padding-left: 10px;
+    margin: auto;
+    width: 100%;
+    cursor: pointer;
+}
+
+.listImg {
+    width: 50px;
+    height: 50px;
+    float: right;
 }
 
 
