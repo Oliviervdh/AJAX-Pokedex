@@ -1,4 +1,5 @@
 const input = document.getElementById("search");
+
 input.addEventListener("keyup", validateInput);
 input.addEventListener("keyup", dropdown);
 
@@ -211,5 +212,7 @@ function filterData(event){
         });
        event.target.value = "";
 }
+
+
 
 
