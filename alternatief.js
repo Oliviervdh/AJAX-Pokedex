@@ -37,6 +37,8 @@
 
       input.value = '';
     } else if (e.key === "Enter"){
+      const blueLight = document.getElementById("blue-light");
+      blueLight.style.backgroundColor = "red";
       const changeDisplayColor = document.getElementById("poke-img");
       changeDisplayColor.innerHTML = "Please be more precise or choose from the dropdown";
       input.value = '';
@@ -54,6 +56,7 @@
       clearInterval(clearLight)
     }, 500);
   };
+
 
   const changeDisplayColor = () => {
     const changeDisplayColor = document.getElementById("poke-info");
