@@ -23,15 +23,18 @@
 
   const handleInput = (e) => {
     removeDropdown()
+    if (e.currentTarget.value === '') return
 
     //telkens als er getypt wordt moet de data gefilterd worden + dropdown aanmaken
     const filteredPokemon = filterPokemon(e.currentTarget.value.toLowerCase());
     createDropdown(filteredPokemon);
 
     //als er op enter gedrukt wordt moet een resultaat verschijnen
-    if(e.key === "Enter"){
-      console.log('Proficiat, je hebt op enter gedrukt.');
-    };
+    if(e.key === "Enter" && filteredPokemon.length === 1){
+      displayPokemon(filteredPokemon[0].name);
+    } else if (e.key === "Enter"){
+      alert('Please be more precise or choose from the dropdown')
+    }
   };
 
   //functies
@@ -42,17 +45,19 @@
 
   const createDropdown = (filteredPokemon) => {
     filteredPokemon.forEach(pokemon => addToDropdown(pokemon));
+    dropdown.classList.add("dropdownOut");
   };
 
   const removeDropdown = () => {
     dropdown.childNodes.forEach(element => element.removeEventListener('click', handleClick));
-    dropdown.innerHTML = ``;
+    dropdown.innerHTML = ` `;
   };
 
   const addToDropdown = (pokemon) => {
     const pokeItem = document.createElement('li');
 
     pokeItem.innerText = pokemon.name;
+    pokeItem.classList.add('listItem');
     pokeItem.addEventListener('click', handleClick);
 
     dropdown.appendChild(pokeItem);
