@@ -40,7 +40,7 @@
       alert('Please be more precise or choose from the dropdown');
     };
   };
-z
+
   //functies
   const filterPokemon = (input) => {
     const { pokemon_species } = JSON.parse(storage.getItem('pokedata'));
