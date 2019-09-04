@@ -43,8 +43,8 @@
     return pokemon_species.filter(pokemon => pokemon.name.includes(input));
   };
 
-  const createDropdown = (filteredPokemon) => {
-    filteredPokemon.forEach(pokemon => addToDropdown(pokemon));
+  const createDropdown = (filteredPokemonArray) => {
+    filteredPokemonArray.forEach(pokemon => addToDropdown(pokemon));
     dropdown.classList.add("dropdownOut");
   };
 
