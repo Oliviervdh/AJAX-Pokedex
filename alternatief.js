@@ -42,6 +42,26 @@
   };
 
   //functies
+
+  const changeLightColor = () => {
+    const blueLight = document.getElementById("blue-light");
+    setTimeout(function(){
+      blueLight.style.backgroundColor = "rgba(255, 179, 0, 1)";}, 10);
+    const clearLight = setInterval(function(){
+      blueLight.style.backgroundColor = "rgba(21, 245, 244, 1)";
+      clearInterval(clearLight)
+    }, 500);
+  };
+
+  const changeDisplayColor = () => {
+    const changeDisplayColor = document.getElementById("poke-info");
+    changeDisplayColor.style.backgroundColor = "rgba(54, 243, 7, 1)";
+    const changeFontColorLeft = document.getElementById("left-info");
+    changeFontColorLeft.style.color = "rgba(39, 39, 39, 1)";
+    const changeFontColorRight = document.getElementById("right-info");
+    changeFontColorRight.style.color = "rgba(39, 39, 39, 1)";
+  };
+
   const filterPokemon = (input) => {
     const { pokemon_species } = JSON.parse(storage.getItem('pokedata'));
     return pokemon_species.filter(pokemon => pokemon.name.includes(input));
@@ -72,6 +92,10 @@
   };
 
   const displayPokemon = async (pokemonName) => {
+
+    changeLightColor();
+    changeDisplayColor();
+
     // Pokémon name.
     const pokeName = pokemonName;
 

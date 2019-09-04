@@ -221,13 +221,14 @@ body {
   border-radius: 10px;
   border-color: black;
   border-style: solid;
+  color: rgba(39, 39, 39, 1);
   background-color: rgba(39, 39, 39, 1);
   margin: auto;
 
 }
 
 #left-info {
-  color: whitesmoke;
+  /*color: whitesmoke;*/
   text-align: left;
   width: 52%;
   height: 100%;
@@ -235,7 +236,7 @@ body {
 }
 
 #right-info {
-  color: whitesmoke;
+  /*color: whitesmoke;*/
   text-align: left;
   width: 48%;
   height: 100%;
