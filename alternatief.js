@@ -5,7 +5,7 @@
   const dropdown = document.querySelector('#dropdown');
 
   // init functie
-  const init = () => {
+  const start = () => {
     //data ophalen en opslaan in localstorage
     fetch("https://pokeapi.co/api/v2/generation/1/")
       .then(r => r.json())
@@ -17,13 +17,15 @@
 
   // Event handlers
   const handleClick = (e) => {
+    removeDropdown();
     const pokemonToDisplay = e.currentTarget.innerText
     displayPokemon(pokemonToDisplay)
+    input.value = '';
   };
 
   const handleInput = (e) => {
-    removeDropdown()
-    if (e.currentTarget.value === '') return
+    removeDropdown();
+    if (e.currentTarget.value === '') return;
 
     //telkens als er getypt wordt moet de data gefilterd worden + dropdown aanmaken
     const filteredPokemon = filterPokemon(e.currentTarget.value.toLowerCase());
@@ -32,11 +34,13 @@
     //als er op enter gedrukt wordt moet een resultaat verschijnen
     if(e.key === "Enter" && filteredPokemon.length === 1){
       displayPokemon(filteredPokemon[0].name);
+      removeDropdown();
+      input.value = '';
     } else if (e.key === "Enter"){
-      alert('Please be more precise or choose from the dropdown')
-    }
+      alert('Please be more precise or choose from the dropdown');
+    };
   };
-
+z
   //functies
   const filterPokemon = (input) => {
     const { pokemon_species } = JSON.parse(storage.getItem('pokedata'));
@@ -44,7 +48,7 @@
   };
 
   const createDropdown = (filteredPokemonArray) => {
-    filteredPokemonArray.forEach(pokemon => addToDropdown(pokemon));
+    filteredPokemonArray.forEach(pokemon => addToDropdown(pokemon)); 
     dropdown.classList.add("dropdownOut");
   };
 
@@ -55,18 +59,21 @@
   };
 
   const addToDropdown = (pokemon) => {
+    //element creëren
     const pokeItem = document.createElement('li');
-
+    
+    //element configureren
     pokeItem.innerText = pokemon.name;
     pokeItem.classList.add('listItem');
     pokeItem.addEventListener('click', handleClick);
 
+    //toevoegen aan dom
     dropdown.appendChild(pokeItem);
   };
 
-  const displayPokemon = async (pokemon) => {
+  const displayPokemon = async (pokemonName) => {
     // Pokémon name.
-    const pokeName = pokemon;
+    const pokeName = pokemonName;
 
     const displayPokeName = document.getElementById("top-span");
     displayPokeName.innerHTML = "";
@@ -111,7 +118,7 @@
     });
 
     // Pokémon evolution.
-    const pokeEvo = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeName}`).then(r => r.json());
+    const pokeEvo = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeName}`).then(res => res.json());
     const pokeEvoName = pokeEvo.evolves_from_species;
     const displayPokeEvoName = document.getElementById("bottom-span");
 
@@ -142,5 +149,5 @@
   };
   
   //GOGOGOOGOGOGO
-  init();
+  start();
 }

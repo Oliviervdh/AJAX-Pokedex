@@ -1,5 +1,4 @@
 const input = document.getElementById("search");
-
 input.addEventListener("keyup", validateInput);
 input.addEventListener("keyup", dropdown);
 
@@ -11,11 +10,6 @@ function fetchData (url) {
     return (JSON.parse(requests.response));
 }
 
-// Gets the full Poke Json data.
-const pokeData = fetchData("https://pokeapi.co/api/v2/generation/1/");
-// Gets all the pokemon species from the data.
-const pokeSpecies = pokeData.pokemon_species;
-
 function changeLightColor() {
     const blueLight = document.getElementById("blue-light");
     setTimeout(function(){
@@ -26,9 +20,22 @@ function changeLightColor() {
     }, 500);
 }
 
+function changeDisplayColor() {
+    const changeDisplayColor = document.getElementById("poke-info");
+    changeDisplayColor.style.backgroundColor = "rgba(54, 243, 7, 1)";
+    const changeFontColorLeft = document.getElementById("left-info");
+    changeFontColorLeft.style.color = "rgba(39, 39, 39, 1)";
+    const changeFontColorRight = document.getElementById("right-info");
+    changeFontColorRight.style.color = "rgba(39, 39, 39, 1)";
+}
+
+// Gets the full Poke Json data.
+const pokeData = fetchData("https://pokeapi.co/api/v2/generation/1/");
+// Gets all the pokemon species from the data.
+const pokeSpecies = pokeData.pokemon_species;
+
+
 function validateInput(event){
-    // Gets all the pokemon species from the data.
-    const pokeSpecies = pokeData.pokemon_species;
 
     const inputVal = event.target.value;
     const lowerCaseValue = inputVal.toLowerCase();
@@ -51,19 +58,15 @@ function validateInput(event){
     }
 }
 
-function dropdown() {
-    const pokeSpecies = pokeData.pokemon_species;
-    const inputValue = input.value;
+function dropdown(event) {
+    const inputValue = event.target.value;
     const lowerCaseValue = inputValue.toLowerCase();
     const filteredArray = pokeSpecies.filter((arrValue) => {
         return arrValue.name.includes(lowerCaseValue);
     });
 
     listContainer = document.createElement('div');
-    listContainer.style.width = "100%";
-    listContainer.style.display = "flex";
-    listContainer.style.flexDirection = "column";
-    listContainer.style.textAlign = "left";
+    listContainer.classList.add("listContainer");
 
     filteredArray.map((pokemon)=>{
         const dropdownName = pokemon.name;
@@ -73,33 +76,19 @@ function dropdown() {
         document.getElementById('dropdown').innerHTML = "";
 
         const dropdown = document.getElementById('dropdown').appendChild(listContainer);
-        dropdown.style.maxHeight = "130px";
-        dropdown.style.overflow = "auto";
-        dropdown.style.borderColor = "black";
-        dropdown.style.borderStyle = "solid";
-        dropdown.style.borderRadius = "10px";
+        dropdown.classList.add("dropdownOut");
 
         listItem = document.createElement('span');
-        listItem.setAttribute("color", "white");
-        listItem.setAttribute( "text-align", "left");
-        listItem.classList.add("clickMe");
-        listItem.style.paddingTop = "10px";
-        listItem.style.paddingLeft = "10px";
-        listItem.style.margin = "auto";
-        listItem.style.width = "100%";
-        listItem.style.cursor = "pointer";
-
         listItem.addEventListener("click", clicked);
+        listItem.classList.add("listItem");
+
         listImg = document.createElement('IMG');
         listImg.setAttribute("src", pokeImg);
-
-        listImg.setAttribute("width", "50");
-        listImg.setAttribute("height", "50");
-        listImg.setAttribute("align", "right");
+        listImg.classList.add("listImg");
 
         for (i = 0; i < dropdownName.length; ++i) {
             listItem.innerText = "";
-            listItem.innerHTML += dropdownName ;
+            listItem.innerHTML += dropdownName;
             listItem.appendChild(listImg);
             listContainer.appendChild(listItem);
         }
@@ -113,7 +102,7 @@ function dropdown() {
 
 function filterData(event){
 
-    // const clickedPoke = event.target.innerText;
+    const clickedPoke = event.target.innerText;
     const inputVal = event.target.value;
     const lowerCaseValue = inputVal.toLowerCase();
 
@@ -123,14 +112,8 @@ function filterData(event){
         return arrValue.name === lowerCaseValue;
     });
 
-        // Changes the colors of the right display & fonts & light
-        const changeDisplayColor = document.getElementById("poke-info");
-        changeDisplayColor.style.backgroundColor = "rgba(54, 243, 7, 1)";
-        const changeFontColorLeft = document.getElementById("left-info");
-        changeFontColorLeft.style.color = "rgba(39, 39, 39, 1)";
-        const changeFontColorRight = document.getElementById("right-info");
-        changeFontColorRight.style.color = "rgba(39, 39, 39, 1)";
         changeLightColor();
+        changeDisplayColor();
 
         // Using a map function to iterate over the data in the filtered array and retrieving the name from it.
         filteredArray.map((pokemon)=>{
@@ -149,8 +132,7 @@ function filterData(event){
             const displayPokeImg = document.getElementById("poke-img");
             const img = document.createElement("IMG");
             img.setAttribute("src", pokeImg);
-            img.setAttribute("width", "320");
-            img.setAttribute("height", "205");
+            img.classList.add("img");
             displayPokeImg.innerHTML = "";
             displayPokeImg.appendChild(img);
 
@@ -212,7 +194,5 @@ function filterData(event){
         });
        event.target.value = "";
 }
-
-
 
 
