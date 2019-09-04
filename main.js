@@ -34,7 +34,6 @@ const pokeData = fetchData("https://pokeapi.co/api/v2/generation/1/");
 // Gets all the pokemon species from the data.
 const pokeSpecies = pokeData.pokemon_species;
 
-
 function validateInput(event){
 
     const inputVal = event.target.value;

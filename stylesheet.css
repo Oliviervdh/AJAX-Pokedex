@@ -76,6 +76,11 @@ body {
 
 }
 #poke-img{
+  font-family: pokeMonS;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(53, 98, 173, 1);
   border-radius: 10px;
   border-color: black;
   border-style: solid;

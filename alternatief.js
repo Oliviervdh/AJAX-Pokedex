@@ -18,8 +18,8 @@
   // Event handlers
   const handleClick = (e) => {
     removeDropdown();
-    const pokemonToDisplay = e.currentTarget.innerText
-    displayPokemon(pokemonToDisplay)
+    const pokemonToDisplay = e.currentTarget.innerText;
+    displayPokemon(pokemonToDisplay);
     input.value = '';
   };
 
@@ -34,11 +34,13 @@
     //als er op enter gedrukt wordt moet een resultaat verschijnen
     if(e.key === "Enter" && filteredPokemon.length === 1){
       displayPokemon(filteredPokemon[0].name);
-      removeDropdown();
+
       input.value = '';
     } else if (e.key === "Enter"){
-      alert('Please be more precise or choose from the dropdown');
-    };
+      const changeDisplayColor = document.getElementById("poke-img");
+      changeDisplayColor.innerHTML = "Please be more precise or choose from the dropdown";
+      input.value = '';
+    }
   };
 
   //functies
@@ -74,21 +76,29 @@
 
   const removeDropdown = () => {
     dropdown.childNodes.forEach(element => element.removeEventListener('click', handleClick));
-    dropdown.innerHTML = ` `;
+    dropdown.innerHTML = ``;
     dropdown.classList.remove("dropdownOut");
   };
 
-  const addToDropdown = (pokemon) => {
-    //element creëren
-    const pokeItem = document.createElement('li');
+  const addToDropdown = async (pokemon) => {
+
+    const pokeUrl = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`).then(r => r.json());
+    const pokeImg =  pokeUrl.sprites.front_default;
+
+    //elementen creëren
+    const listItem = document.createElement('span');
+    const listImg = document.createElement('IMG');
+    listImg.setAttribute("src", pokeImg);
+    listImg.classList.add("listImg");
     
     //element configureren
-    pokeItem.innerText = pokemon.name;
-    pokeItem.classList.add('listItem');
-    pokeItem.addEventListener('click', handleClick);
+    listItem.innerText = pokemon.name;
+    listItem.appendChild(listImg);
+    listItem.classList.add('listItem');
+    listItem.addEventListener('click', handleClick);
 
     //toevoegen aan dom
-    dropdown.appendChild(pokeItem);
+    dropdown.appendChild(listItem);
   };
 
   const displayPokemon = async (pokemonName) => {
@@ -170,8 +180,10 @@
         const pokeMove = move.move.name;
         displayPokeMoves.innerHTML += pokeMove + " ";
     });
+
+    removeDropdown();
   };
   
-  //GOGOGOOGOGOGO
+  //GO Go Go
   start();
 }
