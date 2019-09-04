@@ -51,6 +51,7 @@
   const removeDropdown = () => {
     dropdown.childNodes.forEach(element => element.removeEventListener('click', handleClick));
     dropdown.innerHTML = ` `;
+    dropdown.classList.remove("dropdownOut");
   };
 
   const addToDropdown = (pokemon) => {
