@@ -22,7 +22,7 @@ function changeLightColor() {
 
 function changeDisplayColor() {
     const changeDisplayColor = document.getElementById("poke-info");
-    changeDisplayColor.style.backgroundColor = "rgba(54, 243, 7, 1)";
+    changeDisplayColor.style.backgroundColor = "#66F464";
     const changeFontColorLeft = document.getElementById("left-info");
     changeFontColorLeft.style.color = "rgba(39, 39, 39, 1)";
     const changeFontColorRight = document.getElementById("right-info");
