@@ -3,7 +3,6 @@
   const storage = window.localStorage;
   const input = document.querySelector('#search');
   const dropdown = document.querySelector('#dropdown');
-
   let error = false;
 
   // init functie

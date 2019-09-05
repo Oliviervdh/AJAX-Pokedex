@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33fb8a57-3cf1-4a82-bbe9-355af611acbf" name="Default Changelist" comment="Basic setup + &quot;Linked to API&quot;">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alternatief.js" beforeDir="false" afterPath="$PROJECT_DIR$/alternatief.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,16 +41,21 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alternatief.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+            <state relative-caret-position="523">
+              <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
               <folding>
                 <element signature="e#203#500#0" />
+                <element signature="e#552#695#0" />
+                <element signature="e#727#1309#0" />
                 <element signature="e#1587#1908#0" />
+                <element signature="e#1744#2254#0" />
+                <element signature="e#2198#2235#0" />
                 <element signature="e#1947#2356#0" />
                 <element signature="e#2394#2548#0" />
                 <element signature="e#2602#2720#0" />
                 <element signature="e#2754#2929#0" />
                 <element signature="e#2975#3608#0" />
+                <element signature="e#4023#6728#0" />
               </folding>
             </state>
           </provider>
@@ -159,7 +162,7 @@
       <workItem from="1567332424515" duration="462000" />
       <workItem from="1567424530453" duration="12018000" />
       <workItem from="1567496394265" duration="18065000" />
-      <workItem from="1567671947852" duration="5621000" />
+      <workItem from="1567671947852" duration="5957000" />
     </task>
     <task id="LOCAL-00001" summary="Basic setup + &quot;Linked to API&quot;">
       <created>1556895219551</created>
@@ -172,7 +175,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152781000" />
+    <option name="totallyTimeSpent" value="153117000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -191,7 +194,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.5504386" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.032894738" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="GraphQL" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -263,16 +266,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/alternatief.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        <state relative-caret-position="523">
+          <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
           <folding>
             <element signature="e#203#500#0" />
+            <element signature="e#552#695#0" />
+            <element signature="e#727#1309#0" />
             <element signature="e#1587#1908#0" />
+            <element signature="e#1744#2254#0" />
+            <element signature="e#2198#2235#0" />
             <element signature="e#1947#2356#0" />
             <element signature="e#2394#2548#0" />
             <element signature="e#2602#2720#0" />
             <element signature="e#2754#2929#0" />
             <element signature="e#2975#3608#0" />
+            <element signature="e#4023#6728#0" />
           </folding>
         </state>
       </provider>
