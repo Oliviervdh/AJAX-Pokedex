@@ -1,197 +1,221 @@
-const input = document.getElementById("search");
-input.addEventListener("keyup", validateInput);
-input.addEventListener("keyup", dropdown);
+{
+  //Elementen
+  const storage = window.localStorage;
+  const input = document.querySelector('#search');
+  const dropdown = document.querySelector('#dropdown');
+  let error = false;
 
-// Reusable function that GETs the data with MXL_req
-function fetchData (url) {
-    const requests = new XMLHttpRequest();
-    requests.open('GET', url, false);
-    requests.send();
-    return (JSON.parse(requests.response));
-}
+  // init functie
+  const start = () => {
+    //data ophalen en opslaan in localstorage
+    fetch("https://pokeapi.co/api/v2/generation/1/")
+      .then(r => r.json())
+      .then(data => storage.setItem('pokedata', JSON.stringify(data)));
 
-function changeLightColor() {
+    //beginnen luisteren naar keydown event
+    input.addEventListener('keyup', handleInput)
+  };
+
+  // Event handlers
+  const handleClick = (e) => {
+    removeDropdown();
+    const pokemonToDisplay = e.currentTarget.innerText;
+    displayPokemon(pokemonToDisplay);
+    input.value = '';
+  };
+
+  const handleInput = (e) => {
+
+    removeDropdown();
+    if (e.currentTarget.value === '') return;
+
+    //telkens als er getypt wordt moet de data gefilterd worden + dropdown aanmaken
+    const filteredPokemon = filterPokemon(e.currentTarget.value.toLowerCase());
+    createDropdown(filteredPokemon);
+
+    //als er op enter gedrukt wordt moet een resultaat verschijnen
+    if(e.key === "Enter" && filteredPokemon.length === 1){
+      displayPokemon(filteredPokemon[0].name);
+      input.value = '';
+
+    } else if (e.key === "Enter"){
+      startError();
+      error = true;
+      console.log(error);
+      input.value = '';
+
+    }
+  };
+
+  //functies
+
+  const changeLightColor = () => {
     const blueLight = document.getElementById("blue-light");
     setTimeout(function(){
-        blueLight.style.backgroundColor = "rgba(255, 179, 0, 1)";}, 10);
+      blueLight.style.backgroundColor = "rgba(255, 179, 0, 1)";}, 10);
     const clearLight = setInterval(function(){
-        blueLight.style.backgroundColor = "rgba(21, 245, 244, 1)";
-    clearInterval(clearLight)
+      blueLight.style.backgroundColor = "rgba(21, 245, 244, 1)";
+      clearInterval(clearLight)
     }, 500);
-}
+  };
 
-function changeDisplayColor() {
+  const startError = () => {
+    error = true;
+
+    const changeDisplayColor = document.getElementById("poke-img");
+
+    changeDisplayColor.innerHTML = "Please be more precise or choose from the dropdown";
+    changeDisplayColor.style.backgroundImage = "none";
+
+    let blueLight = document.getElementById("blue-light");
+
+    return   errorLight = setInterval(setColor, 300);
+
+    function setColor() {
+      blueLight.style.backgroundColor = blueLight.style.backgroundColor == "red" ? "rgba(21, 245, 244, 1)" : "red";
+    }
+  };
+
+  const stopError = () => {
+    clearInterval(errorLight);
+  };
+
+  const changeDisplayColor = () => {
     const changeDisplayColor = document.getElementById("poke-info");
     changeDisplayColor.style.backgroundColor = "#66F464";
     const changeFontColorLeft = document.getElementById("left-info");
     changeFontColorLeft.style.color = "rgba(39, 39, 39, 1)";
     const changeFontColorRight = document.getElementById("right-info");
     changeFontColorRight.style.color = "rgba(39, 39, 39, 1)";
-}
+  };
 
-// Gets the full Poke Json data.
-const pokeData = fetchData("https://pokeapi.co/api/v2/generation/1/");
-// Gets all the pokemon species from the data.
-const pokeSpecies = pokeData.pokemon_species;
+  const filterPokemon = (input) => {
+    const { pokemon_species } = JSON.parse(storage.getItem('pokedata'));
+    return pokemon_species.filter(pokemon => pokemon.name.includes(input));
+  };
 
-function validateInput(event){
+  const createDropdown = (filteredPokemonArray) => {
+    filteredPokemonArray.forEach(pokemon => addToDropdown(pokemon)); 
+    dropdown.classList.add("dropdownOut");
+  };
 
-    const inputVal = event.target.value;
-    const lowerCaseValue = inputVal.toLowerCase();
+  const removeDropdown = () => {
+    dropdown.childNodes.forEach(element => element.removeEventListener('click', handleClick));
+    dropdown.innerHTML = ``;
+    dropdown.classList.remove("dropdownOut");
+  };
 
-    if(event.keyCode === 13 ){
+  const addToDropdown = async (pokemon) => {
 
-        const filteredArray = pokeSpecies.filter((arrValue) => {
-            return arrValue.name.includes(lowerCaseValue)
-        });
+    const pokeUrl = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`).then(r => r.json());
+    const pokeImg =  pokeUrl.sprites.front_default;
 
-        filteredArray.forEach((pokemon)=> {
-            return pokeName = pokemon.name;
-        });
+    //elementen creëren
+    const listItem = document.createElement('span');
+    const listImg = document.createElement('IMG');
+    listImg.setAttribute("src", pokeImg);
+    listImg.classList.add("listImg");
+    
+    //element configureren
+    listItem.innerText = pokemon.name;
+    listItem.appendChild(listImg);
+    listItem.classList.add('listItem');
+    listItem.addEventListener('click', handleClick);
 
-        if( lowerCaseValue !== pokeName){
-            alert("Please specify your search by clicking one of the suggestions or entering the full Pokémon name");
-        }else{
-            filterData(event);
-        }
+    //toevoegen aan dom
+    dropdown.appendChild(listItem);
+  };
+
+  const displayPokemon = async (pokemonName) => {
+
+    console.log(error);
+
+    if(error === true){
+      console.log("stop error");
+      stopError()
     }
-}
 
-function dropdown(event) {
-    const inputValue = event.target.value;
-    const lowerCaseValue = inputValue.toLowerCase();
-    const filteredArray = pokeSpecies.filter((arrValue) => {
-        return arrValue.name.includes(lowerCaseValue);
+    changeLightColor();
+    changeDisplayColor();
+
+    // Pokémon name.
+    const pokeName = pokemonName;
+
+    const displayPokeName = document.getElementById("top-span");
+    displayPokeName.innerHTML = "";
+    displayPokeName.innerHTML += " " + pokeName;
+
+    const pokeUrl = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`).then(r => r.json());
+
+    // Pokémon image.
+    const pokeImg = pokeUrl.sprites.front_default
+    const displayPokeImg = document.getElementById("poke-img");
+    const img = document.createElement("IMG");
+    img.setAttribute("src", pokeImg);
+    img.setAttribute("width", "320");
+    img.setAttribute("height", "205");
+    displayPokeImg.innerHTML = "";
+    displayPokeImg.appendChild(img);
+
+    // Pokémon weight.
+    const pokeWeight = pokeUrl.weight;
+    const displayPokeWeight = document.getElementById("middle-span");
+    displayPokeImg.style.backgroundImage = "url('./images/grass5.jpg')";
+    displayPokeWeight.innerHTML = "";
+    displayPokeWeight.innerHTML = " " + pokeWeight;
+
+    // Pokémon type.
+    const pokeTypes = pokeUrl.types;
+    pokeTypes.map((type)=>{
+        const pokeType = type.type.name;
+        const displayPokeType = document.getElementById("right-span-bottom");
+        displayPokeType.innerHTML = "";
+        displayPokeType.innerHTML = pokeType;
     });
 
-    listContainer = document.createElement('div');
-    listContainer.classList.add("listContainer");
+    // Pokémon Game_index
+    const pokeIndex = pokeUrl.game_indices.slice(0,1);
 
-    filteredArray.map((pokemon)=>{
-        const dropdownName = pokemon.name;
-        const pokeUrl = fetchData(`https://pokeapi.co/api/v2/pokemon/${dropdownName}`);
-        const pokeImg = pokeUrl.sprites.front_shiny;
-
-        document.getElementById('dropdown').innerHTML = "";
-
-        const dropdown = document.getElementById('dropdown').appendChild(listContainer);
-        dropdown.classList.add("dropdownOut");
-
-        listItem = document.createElement('span');
-        listItem.addEventListener("click", clicked);
-        listItem.classList.add("listItem");
-
-        listImg = document.createElement('IMG');
-        listImg.setAttribute("src", pokeImg);
-        listImg.classList.add("listImg");
-
-        for (i = 0; i < dropdownName.length; ++i) {
-            listItem.innerText = "";
-            listItem.innerHTML += dropdownName;
-            listItem.appendChild(listImg);
-            listContainer.appendChild(listItem);
-        }
+    pokeIndex.map((index)=>{
+       const pokeIndexNr = index.game_index;
+       const displayPokeIndexNr = document.getElementById("right-span-middle");
+        displayPokeIndexNr.innerHTML = "";
+        displayPokeIndexNr.innerHTML = " " + pokeIndexNr;
     });
 
-    function clicked(event){
-        document.getElementById('dropdown').innerHTML = "";
-        filterData(event);
+    // Pokémon evolution.
+    const pokeEvo = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeName}`).then(res => res.json());
+    const pokeEvoName = pokeEvo.evolves_from_species;
+    const displayPokeEvoName = document.getElementById("bottom-span");
+
+    if(pokeEvoName){
+        displayPokeEvoName.innerHTML = "";
+        displayPokeEvoName.innerHTML = pokeEvoName.name;
+    }else {
+        displayPokeEvoName.innerHTML = "";
+        displayPokeEvoName.innerHTML = "No evo"
     }
-}
 
-function filterData(event){
+    // Pokémon moves.
+    const pokeMoves = pokeUrl.moves;
+    function shuffle(array) {
+        array.sort(() => Math.random() - 0.5);
+    }
+    shuffle(pokeMoves);
 
-    const clickedPoke = event.target.innerText;
-    const inputVal = event.target.value;
-    const lowerCaseValue = inputVal.toLowerCase();
+    const slicedMoves = pokeMoves.slice(0,1);
 
+    const displayPokeMoves = document.getElementById("right-span-top");
+    displayPokeMoves.innerHTML = "";
 
-    // Change value to clickedPoke to make this function work onClick "clicked pokemon"
-    const filteredArray = pokeSpecies.filter((arrValue) => {
-        return arrValue.name === lowerCaseValue;
+    slicedMoves.forEach((move)=>{
+        const pokeMove = move.move.name;
+        displayPokeMoves.innerHTML += pokeMove + " ";
     });
 
-        changeLightColor();
-        changeDisplayColor();
-
-        // Using a map function to iterate over the data in the filtered array and retrieving the name from it.
-        filteredArray.map((pokemon)=>{
-
-            // Pokémon name.
-            const pokeName = pokemon.name;
-
-            const displayPokeName = document.getElementById("top-span");
-            displayPokeName.innerHTML = "";
-            displayPokeName.innerHTML += " " + pokeName;
-
-            const pokeUrl = fetchData(`https://pokeapi.co/api/v2/pokemon/${pokeName}`);
-
-            // Pokémon image.
-            const pokeImg = pokeUrl.sprites.front_default
-            const displayPokeImg = document.getElementById("poke-img");
-            const img = document.createElement("IMG");
-            img.setAttribute("src", pokeImg);
-            img.classList.add("img");
-            displayPokeImg.innerHTML = "";
-            displayPokeImg.appendChild(img);
-
-            // Pokémon weight.
-            const pokeWeight = pokeUrl.weight;
-            const displayPokeWeight = document.getElementById("middle-span");
-            displayPokeImg.style.backgroundImage = "url('grass5.jpg')";
-            displayPokeWeight.innerHTML = "";
-            displayPokeWeight.innerHTML = " " + pokeWeight;
-
-            // Pokémon type.
-            const pokeTypes = pokeUrl.types;
-            pokeTypes.map((type)=>{
-                const pokeType = type.type.name;
-                const displayPokeType = document.getElementById("right-span-bottom");
-                displayPokeType.innerHTML = "";
-                displayPokeType.innerHTML = pokeType;
-            });
-
-            // Pokémon Game_index
-            const pokeIndex = pokeUrl.game_indices.slice(0,1);
-
-            pokeIndex.map((index)=>{
-               const pokeIndexNr = index.game_index;
-               const displayPokeIndexNr = document.getElementById("right-span-middle");
-                displayPokeIndexNr.innerHTML = "";
-                displayPokeIndexNr.innerHTML = " " + pokeIndexNr;
-            });
-
-            // Pokémon evolution.
-            const pokeEvo = fetchData(`https://pokeapi.co/api/v2/pokemon-species/${pokeName}`);
-            const pokeEvoName = pokeEvo.evolves_from_species;
-            const displayPokeEvoName = document.getElementById("bottom-span");
-
-            if(pokeEvoName){
-                displayPokeEvoName.innerHTML = "";
-                displayPokeEvoName.innerHTML = pokeEvoName.name;
-            }else {
-                displayPokeEvoName.innerHTML = "";
-                displayPokeEvoName.innerHTML = "No evo"
-            }
-
-            // Pokémon moves.
-            const pokeMoves = pokeUrl.moves;
-            function shuffle(array) {
-                array.sort(() => Math.random() - 0.5);
-            }
-            shuffle(pokeMoves);
-
-            const slicedMoves = pokeMoves.slice(0,1);
-
-            const displayPokeMoves = document.getElementById("right-span-top");
-            displayPokeMoves.innerHTML = "";
-
-            slicedMoves.forEach((move)=>{
-                const pokeMove = move.move.name;
-                displayPokeMoves.innerHTML += pokeMove + " ";
-            });
-        });
-       event.target.value = "";
+    removeDropdown();
+  };
+  
+  //GO Go Go
+  start();
 }
-
-
