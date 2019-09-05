@@ -63,6 +63,7 @@
     error = true;
 
     const changeDisplayColor = document.getElementById("poke-img");
+
     changeDisplayColor.innerHTML = "Please be more precise or choose from the dropdown";
     changeDisplayColor.style.backgroundImage = "none";
 
