@@ -4,6 +4,8 @@
   const input = document.querySelector('#search');
   const dropdown = document.querySelector('#dropdown');
 
+  let error = false;
+
   // init functie
   const start = () => {
     //data ophalen en opslaan in localstorage
@@ -24,6 +26,7 @@
   };
 
   const handleInput = (e) => {
+
     removeDropdown();
     if (e.currentTarget.value === '') return;
 
@@ -34,14 +37,14 @@
     //als er op enter gedrukt wordt moet een resultaat verschijnen
     if(e.key === "Enter" && filteredPokemon.length === 1){
       displayPokemon(filteredPokemon[0].name);
+      input.value = '';
 
-      input.value = '';
     } else if (e.key === "Enter"){
-      const blueLight = document.getElementById("blue-light");
-      blueLight.style.backgroundColor = "red";
-      const changeDisplayColor = document.getElementById("poke-img");
-      changeDisplayColor.innerHTML = "Please be more precise or choose from the dropdown";
+      startError();
+      error = true;
+      console.log(error);
       input.value = '';
+
     }
   };
 
@@ -57,10 +60,29 @@
     }, 500);
   };
 
+  const startError = () => {
+    error = true;
+
+    const changeDisplayColor = document.getElementById("poke-img");
+    changeDisplayColor.innerHTML = "Please be more precise or choose from the dropdown";
+    changeDisplayColor.style.backgroundImage = "none";
+
+    let blueLight = document.getElementById("blue-light");
+
+    return   errorLight = setInterval(setColor, 300);
+
+    function setColor() {
+      blueLight.style.backgroundColor = blueLight.style.backgroundColor == "red" ? "rgba(21, 245, 244, 1)" : "red";
+    }
+  };
+
+  const stopError = () => {
+    clearInterval(errorLight);
+  };
 
   const changeDisplayColor = () => {
     const changeDisplayColor = document.getElementById("poke-info");
-    changeDisplayColor.style.backgroundColor = "rgba(54, 243, 7, 1)";
+    changeDisplayColor.style.backgroundColor = "#66F464";
     const changeFontColorLeft = document.getElementById("left-info");
     changeFontColorLeft.style.color = "rgba(39, 39, 39, 1)";
     const changeFontColorRight = document.getElementById("right-info");
@@ -105,6 +127,13 @@
   };
 
   const displayPokemon = async (pokemonName) => {
+
+    console.log(error);
+
+    if(error === true){
+      console.log("stop error");
+      stopError()
+    }
 
     changeLightColor();
     changeDisplayColor();

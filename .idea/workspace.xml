@@ -5,8 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alternatief.js" beforeDir="false" afterPath="$PROJECT_DIR$/alternatief.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/stylesheet.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +22,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="14" column="18" lean-forward="true" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+            <state>
+              <caret column="15" lean-forward="true" selection-start-column="15" selection-end-column="15" />
+              <folding>
+                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -33,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stylesheet.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+            <state relative-caret-position="579">
+              <caret line="229" column="39" lean-forward="true" selection-start-line="229" selection-start-column="20" selection-end-line="229" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -42,18 +43,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alternatief.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="40" column="90" selection-start-line="40" selection-start-column="90" selection-end-line="40" selection-end-column="90" />
+            <state relative-caret-position="567">
+              <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
               <folding>
-                <element signature="e#552#693#0" />
-                <element signature="e#1382#1703#0" />
-                <element signature="e#1470#1536#0" />
-                <element signature="e#1741#2150#0" />
-                <element signature="e#2187#2341#0" />
-                <element signature="e#2395#2513#0" />
-                <element signature="e#2547#2723#0" />
-                <element signature="e#2763#3336#0" />
-                <element signature="e#3117#5746#0" />
+                <element signature="e#203#500#0" />
+                <element signature="e#1587#1908#0" />
+                <element signature="e#1947#2356#0" />
+                <element signature="e#2394#2548#0" />
+                <element signature="e#2602#2720#0" />
+                <element signature="e#2754#2929#0" />
+                <element signature="e#2975#3608#0" />
               </folding>
             </state>
           </provider>
@@ -90,8 +89,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/main.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/stylesheet.css" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/alternatief.js" />
       </list>
     </option>
@@ -109,20 +108,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="AJAX-Pokedex" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AJAX-Pokedex" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -173,6 +159,7 @@
       <workItem from="1567332424515" duration="462000" />
       <workItem from="1567424530453" duration="12018000" />
       <workItem from="1567496394265" duration="18065000" />
+      <workItem from="1567671947852" duration="5621000" />
     </task>
     <task id="LOCAL-00001" summary="Basic setup + &quot;Linked to API&quot;">
       <created>1556895219551</created>
@@ -185,10 +172,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146650000" />
+    <option name="totallyTimeSpent" value="152781000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.11530054" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.5296108" />
@@ -203,7 +191,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.16557017" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.5504386" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="GraphQL" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -258,32 +246,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="18" lean-forward="true" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+        <state>
+          <caret column="15" lean-forward="true" selection-start-column="15" selection-end-column="15" />
+          <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/stylesheet.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+        <state relative-caret-position="579">
+          <caret line="229" column="39" lean-forward="true" selection-start-line="229" selection-start-column="20" selection-end-line="229" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/alternatief.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="40" column="90" selection-start-line="40" selection-start-column="90" selection-end-line="40" selection-end-column="90" />
+        <state relative-caret-position="567">
+          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
           <folding>
-            <element signature="e#552#693#0" />
-            <element signature="e#1382#1703#0" />
-            <element signature="e#1470#1536#0" />
-            <element signature="e#1741#2150#0" />
-            <element signature="e#2187#2341#0" />
-            <element signature="e#2395#2513#0" />
-            <element signature="e#2547#2723#0" />
-            <element signature="e#2763#3336#0" />
-            <element signature="e#3117#5746#0" />
+            <element signature="e#203#500#0" />
+            <element signature="e#1587#1908#0" />
+            <element signature="e#1947#2356#0" />
+            <element signature="e#2394#2548#0" />
+            <element signature="e#2602#2720#0" />
+            <element signature="e#2754#2929#0" />
+            <element signature="e#2975#3608#0" />
           </folding>
         </state>
       </provider>
